@@ -1,3 +1,3 @@
 # 西森スピングラス用リポジトリ
 
-[スピングラス理論と情報統計力学](https://academic.oup.com/book/5185)を読んだ時の、問題提起をIssuesに、回答と常識にすべき事柄をPDFファイルにまとめています。
+[スピングラス理論と情報統計力学](https://academic.oup.com/book/5185)を読んだ時の、生じた疑問を[Issues](https://github.com/Hiroto375/Nishimori-Spin-Glasses/issues)に、常識にすべき事柄を常識集にまとめています。
