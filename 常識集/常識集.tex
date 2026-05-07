@@ -1,9 +1,10 @@
-\documentclass{jsarticle}
+\documentclass{ltjsarticle}
 
 \setlength\parindent{0pt}
 \setlength{\columnseprule}{0.4pt}
 
 \newcommand{\sk}{\vskip\baselineskip}
+
 \usepackage[margin=15mm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -12,33 +13,32 @@
 \usepackage{bm}
 \usepackage{here}
 \usepackage{bbm}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage[dvipdfmx,unicode]{hyperref}
-\usepackage{pxjahyper}
+\usepackage{graphicx}
+\usepackage[unicode]{hyperref}
 \usepackage{mathtools}
 \usepackage{url}
 \usepackage{ascmac}
 \usepackage{physics}
 \usepackage[version=4]{mhchem}
-\usepackage[dvipdfmx]{hyperref}
 \usepackage{listings}
+
 \lstset{
 language=Python, 
-basicstyle={\small},%
-identifierstyle={\small},%
-commentstyle={\small\itshape},%
-keywordstyle={\small\bfseries},%
-ndkeywordstyle={\small},%
+basicstyle={\small},
+identifierstyle={\small},
+commentstyle={\small\itshape},
+keywordstyle={\small\bfseries},
+ndkeywordstyle={\small},
 stringstyle={\small\ttfamily},
 frame={tblr},
 breaklines=true,
-columns=[l]{fullflexible},%
-xrightmargin=0zw,%
-xleftmargin=3zw,%
-numberstyle={\scriptsize},%
+columns=[l]{fullflexible},
+xrightmargin=0zw,
+xleftmargin=3zw,
+numberstyle={\scriptsize},
 stepnumber=1,
-numbersep=1zw,%
-lineskip=-0.5ex%
+numbersep=1zw,
+lineskip=-0.5ex
 }
 
 \mathtoolsset{showonlyrefs=true}
@@ -47,5 +47,15 @@ lineskip=-0.5ex%
 \author{東京大学 理学系研究科物理学専攻 修士1年 平松大門}
 \begin{document}
 \maketitle
+
+\section*{6.1.1 劣化2値画像とBayes推定}
+\begin{itemize}
+    \item 状態$\tau$が確率$p$で元の状態$\xi$から反転している時の条件付き確率は?
+    \[
+    P(\tau | \xi)=\frac{\exp(\beta_p \tau\xi)}{2\cosh\beta_p}
+    \]
+\end{itemize}
+
+
 
 \end{document}
