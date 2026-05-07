@@ -48,9 +48,28 @@ lineskip=-0.5ex
 \begin{document}
 \maketitle
 
+\section*{1.1 Ising模型}
+\begin{itemize}
+    \item Ising模型のHamiltonianは？
+    \[
+    H = - J \sum_{(ij)\in B} S_i S_j - h\sum_i S_i
+    \] 
+\sk
+    \item Boltzmann分布で状態$\bm{S}$となる確率は？
+    \[
+P(\bm{S})=\frac{\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \exp(-\beta H(\bm{S}))}
+    \]
+
+    \sk
+    \item 物理量$A$のBoltzmann分布による期待値は？
+    \[
+    \langle A \rangle:=\frac{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, A\,\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \exp(-\beta H(\bm{S}))}
+    \]
+\end{itemize}
+
 \section*{6.1.1 劣化2値画像とBayes推定}
 \begin{itemize}
-    \item 状態$\tau$が確率$p$で元の状態$\xi$から反転している時の条件付き確率は?
+    \item 状態$\tau$が確率$p$で元の状態$\xi$から反転している時の条件付き確率は？
     \[
     P(\tau | \xi)=\frac{\exp(\beta_p \tau\xi)}{2\cosh\beta_p}
     \]
