@@ -38,8 +38,10 @@ xleftmargin=3zw,
 numberstyle={\scriptsize},
 stepnumber=1,
 numbersep=1zw,
-lineskip=-0.5ex
+lineskip=-0.5exx
 }
+
+
 
 \mathtoolsset{showonlyrefs=true}
 
@@ -48,7 +50,7 @@ lineskip=-0.5ex
 \begin{document}
 \maketitle
 \section{相転移と平均場理論}
-\subsection{1.1 Ising模型}
+\subsection{Ising模型}
 \begin{itemize}
     \item Ising模型のHamiltonianは？
     \[
@@ -81,6 +83,7 @@ P(\bm{S})=\frac{\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \
 \section{誤り訂正符号}
 
 
+
 \newpage
 \section{画像修復}
 \subsection{確率論を用いた画像修復}
@@ -96,29 +99,83 @@ P(\bm{S})=\frac{\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \
     \[
     P(\tau_i | \xi_i)=\frac{\exp(\beta_p \tau_i\xi_i)}{2\cosh\beta_p}
     \]
-ただし、$\exp(2\beta_p)=\frac{1-p}{p}$
+ただし、$\exp(2\beta_p)=\frac{1-p}{p}$。
+$\pm J$模型と同一である。
 
 \sk
 \item ノイズ付き画像$\{\tau_i\}$と原画像$\{\xi_i\}$に対して上の確率を拡張した式は？
 \[
 P(\{\tau_i\}|\{\xi_i\})=\frac{\exp\left(\beta_p\displaystyle\sum_i \tau_i\xi_i\right)}{\left(2\cosh\beta_p \right)^N}
 \]
+最尤推定なら、これを最大にする$\{\xi_i\}$を修復画像として採用する。
 
 \sk
-\item ノイズ付き画像$\{\tau_i\}$から修復画像$\{\sigma_i\}$を生成する確率分布は？
+\item ノイズ付き画像$\{\tau_i\}$から修復画像$\{\sigma_i\}$を生成する確率分布(事後分布)は？
 \[
-P(\{\sigma_i\}|\{\tau_i\})=\frac{P(\{\sigma_i\}, \{\tau_i\})}{P(\{\tau_i\})}
+P(\{\sigma_i\}|\{\tau_i\})
+=\frac{P(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} P(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}
+=\frac{\exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i\right)P(\{\sigma_i\})}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} \exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i\right)P(\{\sigma_i\})}
 \]
-    
+
+MAPなら、これを最大にする$\{\sigma_i\}$を修復画像として採用する。
+MPMなら、$\mathrm{sgn}\langle \sigma_i\rangle :=\mathrm{sgn}\left(\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}}\sigma_i \,P(\{\sigma_i\}|\{\tau_i\})\right)$を修復ピクセルとして採用する。
+ノイズパラメータ$\beta_p$は不明なので$\beta$とし、探す必要がある。
 
 \sk
-    \item 絶対値$|A|$が出てきた時の変形は？
-    \[
-    |A|=A\,\mathrm{sgn}A
-    \]
-
+\item 事前分布$P(\{\sigma_i\})$のモデル分布$P_m(\{\sigma_i\})$は？
+\[
+P_m(\{\sigma_i\})=\frac{\exp\left(\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i \sigma_j\right)}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}}\exp\left(\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i\sigma_j\right)}
+\]
+自然な画像は連続的であることが多いため、隣接するピクセルが同じ状態である確率が高くなるようモデルを設定。
+$\beta_m$は、大きくすると同じ状態を取りやすくなる、画像の滑らかさについてのパラメータ。
 
 \end{itemize}
+
+\subsubsection{MAPと有限温度復号}
+
+
+\begin{itemize}
+    \item 上のモデルを適用した事後分布は？
+    \[
+    P(\{\sigma_i\}|\{\tau_i\})
+    =\frac{\exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i+\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i \sigma_j\right)}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} \exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i+\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i \sigma_j\right)}
+    \]
+    $\frac{\beta_m}{\beta}$を相互作用と解釈すれば、これはランダムな磁場がかかったIsing模型のBoltzmann分布である。
+\end{itemize}
+
+\sk
+
+\subsubsection{重なりのパラメータ}
+\begin{itemize}
+    \item 原画像$\{\xi_i\}$と修復画像$\{\sigma_i\}$のオーバーラップの期待値$M$は？
+    
+    \[
+    M(\beta_m, \beta)
+    := \mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\tau_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle
+    \]
+パラメータ$\beta_m, \beta$は$\langle \sigma_i\rangle$に含まれている。
+
+
+
+    \sk
+    \item オーバーラップ$M(\beta_m, \beta)$の満たす関係は？
+    \[
+    M(\beta_m, \beta)\leq M(\beta_s, \beta_p)
+    \]
+ただし、$P(\{\xi_i\})=\frac{\exp\left(\beta_s\displaystyle\sum_{\langle ij \rangle}\xi_i \xi_j\right)}{Z(\beta_s)}$を仮定した。
+真のパラメータに合致する時に重なりが最大になるという、自然な関係。
+証明は
+\begin{align}
+    M(\beta_m, \beta) 
+&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle\right|\\
+&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\xi_i\}|\{\tau_i\})P(\{\tau_i\})\,\xi_i\right|\\
+&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \xi_i\rangle = M(\beta_s, \beta_p) .\\
+\end{align}
+
+一般に、$x\,\mathrm{sgn}(y)\leq x\,\mathrm{sgn} (x)$の不等式が成り立つ。
+\end{itemize}
+
+
 
 
 
