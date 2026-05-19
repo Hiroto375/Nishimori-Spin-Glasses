@@ -47,8 +47,8 @@ lineskip=-0.5ex
 \author{東京大学 理学系研究科物理学専攻 修士1年 平松大門}
 \begin{document}
 \maketitle
-
-\section*{1.1 Ising模型}
+\section{相転移と平均場理論}
+\subsection{1.1 Ising模型}
 \begin{itemize}
     \item Ising模型のHamiltonianは？
     \[
@@ -61,25 +61,66 @@ P(\bm{S})=\frac{\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \
     \]
 
     \sk
-    \item 物理量$A$のカノニカル平均は？
+    \item 物理量$A$のカノニカル平均$\langle A \rangle$は？
     \[
     \langle A \rangle:=\frac{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, A(\bm{S})\,\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \exp(-\beta H(\bm{S}))}
     \]
 \end{itemize}
 
-\section*{6.1.1 劣化2値画像とBayes推定}
+\newpage
+\section{スピングラスの平均場理論}
+
+
+\newpage
+\section{レプリカ対称の破れ}
+
+\newpage
+\section{スピングラスのゲージ理論}
+
+\newpage
+\section{誤り訂正符号}
+
+
+\newpage
+\section{画像修復}
+\subsection{確率論を用いた画像修復}
 \begin{itemize}
-    \item 状態$\tau$が確率$p$で元の状態$\xi$から反転している時の条件付き確率は？
+    \item 画像修復は誤り訂正符号と話が同じになるのはなぜか？
+    
+    画像ピクセルと符号ビットを同一視すれば当たり前。誤り訂正符号と同様に、修復率の最大化においてMPMがMAPより優れている
+\end{itemize}
+
+\subsubsection{劣化2値画像とBayes推定}
+\begin{itemize}
+    \item ピクセルのノイズ付き状態$\tau_i$が確率$p$で元の状態$\xi_i$から反転している時の条件付き確率は？
     \[
-    P(\tau | \xi)=\frac{\exp(\beta_p \tau\xi)}{2\cosh\beta_p}
+    P(\tau_i | \xi_i)=\frac{\exp(\beta_p \tau_i\xi_i)}{2\cosh\beta_p}
     \]
+ただし、$\exp(2\beta_p)=\frac{1-p}{p}$
+
+\sk
+\item ノイズ付き画像$\{\tau_i\}$と原画像$\{\xi_i\}$に対して上の確率を拡張した式は？
+\[
+P(\{\tau_i\}|\{\xi_i\})=\frac{\exp\left(\beta_p\displaystyle\sum_i \tau_i\xi_i\right)}{\left(2\cosh\beta_p \right)^N}
+\]
+
+\sk
+\item ノイズ付き画像$\{\tau_i\}$から修復画像$\{\sigma_i\}$を生成する確率分布は？
+\[
+P(\{\sigma_i\}|\{\tau_i\})=\frac{P(\{\sigma_i\}, \{\tau_i\})}{P(\{\tau_i\})}
+\]
+    
+
 \sk
     \item 絶対値$|A|$が出てきた時の変形は？
     \[
     |A|=A\,\mathrm{sgn}A
     \]
-    
+
+
 \end{itemize}
+
+
 
 
 
