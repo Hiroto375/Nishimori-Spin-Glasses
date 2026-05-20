@@ -88,24 +88,24 @@ P(\bm{S})=\frac{\exp(-\beta H(\bm{S}))}{\mathop{\mathrm{Tr}}\limits_{\bm{S}}\, \
 \section{画像修復}
 \subsection{確率論を用いた画像修復}
 \begin{itemize}
-    \item 画像修復は誤り訂正符号と話が同じになるのはなぜか？
+    \item 画像修復が誤り訂正符号と似た話になるのはなぜか？
     
-    画像ピクセルと符号ビットを同一視すれば当たり前。誤り訂正符号と同様に、修復率の最大化においてMPMがMAPより優れている
+    画像ピクセルと符号ビットを同一視すれば当たり前。元画像の分布は符号の場合と異なり一様でないことに注意。
 \end{itemize}
 
 \subsubsection{劣化2値画像とBayes推定}
 \begin{itemize}
-    \item ピクセルのノイズ付き状態$\tau_i$が確率$p$で元の状態$\xi_i$から反転している時の条件付き確率は？
+    \item ピクセルのノイズ付き状態$\tau_i$が確率$p$で元の状態$\xi_i$から反転している時の出力分布は？
     \[
-    P(\tau_i | \xi_i)=\frac{\exp(\beta_p \tau_i\xi_i)}{2\cosh\beta_p}
+    P_{\mathrm{out}}(\tau_i | \xi_i)=\frac{\exp(\beta_p \tau_i\xi_i)}{2\cosh\beta_p}
     \]
 ただし、$\exp(2\beta_p)=\frac{1-p}{p}$。
 $\pm J$模型と同一である。
 
 \sk
-\item ノイズ付き画像$\{\tau_i\}$と原画像$\{\xi_i\}$に対して上の確率を拡張した式は？
+\item ノイズ付き画像$\{\tau_i\}$と原画像$\{\xi_i\}$に対して上の確率分布を拡張した式は？
 \[
-P(\{\tau_i\}|\{\xi_i\})=\frac{\exp\left(\beta_p\displaystyle\sum_i \tau_i\xi_i\right)}{\left(2\cosh\beta_p \right)^N}
+P_\mathrm{out}(\{\tau_i\}|\{\xi_i\})=\frac{\exp\left(\beta_p\displaystyle\sum_i \tau_i\xi_i\right)}{\left(2\cosh\beta_p \right)^N}
 \]
 最尤推定なら、これを最大にする$\{\xi_i\}$を修復画像として採用する。
 
@@ -113,7 +113,7 @@ P(\{\tau_i\}|\{\xi_i\})=\frac{\exp\left(\beta_p\displaystyle\sum_i \tau_i\xi_i\r
 \item ノイズ付き画像$\{\tau_i\}$から修復画像$\{\sigma_i\}$を生成する確率分布(事後分布)は？
 \[
 P(\{\sigma_i\}|\{\tau_i\})
-=\frac{P(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} P(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}
+=\frac{P_\mathrm{out}(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} P_\mathrm{out}(\{\tau_i\}|\{\sigma_i\})P(\{\sigma_i\})}
 =\frac{\exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i\right)P(\{\sigma_i\})}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}} \exp\left(\beta\displaystyle\sum_i \tau_i\sigma_i\right)P(\{\sigma_i\})}
 \]
 
@@ -151,7 +151,7 @@ $\beta_m$は、大きくすると同じ状態を取りやすくなる、画像�
     
     \[
     M(\beta_m, \beta)
-    := \mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\tau_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle
+    := \mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\tau_i\}} P_\mathrm{out}(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle
     \]
 パラメータ$\beta_m, \beta$は$\langle \sigma_i\rangle$に含まれている。
 
@@ -162,21 +162,71 @@ $\beta_m$は、大きくすると同じ状態を取りやすくなる、画像�
     \[
     M(\beta_m, \beta)\leq M(\beta_s, \beta_p)
     \]
-ただし、$P(\{\xi_i\})=\frac{\exp\left(\beta_s\displaystyle\sum_{\langle ij \rangle}\xi_i \xi_j\right)}{Z(\beta_s)}$を仮定した。
+ただし、事前分布$P(\{\xi_i\})=\frac{\exp\left(\beta_s\displaystyle\sum_{\langle ij \rangle}\xi_i \xi_j\right)}{Z(\beta_s)}$を仮定した。
 真のパラメータに合致する時に重なりが最大になるという、自然な関係。
 証明は
 \begin{align}
     M(\beta_m, \beta) 
-&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle\right|\\
+&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P _\mathrm{out}(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle\right|\\
 &\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\xi_i\}|\{\tau_i\})P(\{\tau_i\})\,\xi_i\right|\\
-&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \xi_i\rangle = M(\beta_s, \beta_p) .\\
+&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\xi_i\}|\{\tau_i\})P(\{\tau_i\})\,\xi_i \,\mathrm{sgn}\langle \xi_i\rangle = M(\beta_s, \beta_p) .\\
 \end{align}
 
 一般に、$x\,\mathrm{sgn}(y)\leq x\,\mathrm{sgn} (x)$の不等式が成り立つ。
+
+\sk
+\item ガウスノイズの場合の出力分布は？
+\[
+P_\mathrm{out}(\{\tau_i\}|\{\xi_i\})
+=\frac{1}{\sqrt{2\pi\tau^2}^N}\exp\left[-\displaystyle\sum_i \frac{\left(\tau_i-\tau_0\xi_i\right)^2}{2\tau^2}\right]
+\]
+
+\sk
+\item ガウスノイズの場合の事後分布は？
+\[
+P(\{\xi_i\}|\{\tau_i\})
+=\frac{\exp\left(\frac{\tau_0}{\tau^2}\displaystyle\sum_i \tau_i\sigma_i+\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i \sigma_j\right)}{\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}}\exp\left(\frac{\tau_0}{\tau^2}\displaystyle\sum_i \tau_i\sigma_i+\beta_m\displaystyle\sum_{\langle ij \rangle}\sigma_i \sigma_j\right)}
+\]
+
+
+\sk
+\item ガウスノイズの場合のオーバーラップ$M(\beta_m, \beta)$の満たす関係は？
+\[
+M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
+\]
+証明は、$\mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}$を$\displaystyle\int \prod_i d\tau_i$に置き換えるだけ。
 \end{itemize}
 
+\sk
+\subsection{無限レンジ模型}
+\subsubsection{レプリカ計算}
+\begin{itemize}
+    \item 無限レンジ模型での事前分布は？
+    \[
+    P(\{\xi_i\})= \frac{\exp\left(\frac{\beta_s}{2N}\displaystyle\sum_{i\neq j}\xi_i \xi_j\right)}{Z(\beta_s)}
+    \]
+    エネルギー部分が$N$にスケールするよう、相互作用に$\frac{1}{N}$を加える。
+    モデル分布も同様。
 
+    \sk
+\item 画像修復における無限レンジ模型のハミルトニアンは？
+\[
+-\beta H := \frac{\beta_m}{2 N}\displaystyle\sum_{i\neq j}\sigma_i \sigma_j + \beta\displaystyle\sum_i \tau_i\sigma_i
+\]
+事後分布の最大化により画像を修復するが、今回はそれがBoltzmann分布であるから類推によりハミルトニアンを定義できる。
 
+\sk
+\item $[Z^n]$の求め方は？
+\begin{align}
+    [Z^n]
+    =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\}) \left(\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}}\exp(-\beta H)\right)^n \\
+    =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\exp\left(-\sum_i\frac{(\tau_i-\tau_0\xi_i)^2}{2\tau^2}\right)\exp\left(\frac{\beta_s}{2N}\sum_{i\neq j}\xi_i\xi_j\right) \mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}}\exp\left(\frac{\beta_m}{2 N}\displaystyle\sum_\alpha\sum_{i\neq j}\sigma_i^\alpha \sigma_j^\alpha + \beta\displaystyle\sum_\alpha\sum_i \tau_i\sigma_i^\alpha\right)\\
+    =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\exp\left(-\sum_i\frac{\tau_i^2+\tau_0^2}{2\tau^2}+\frac{\tau_0}{\tau^2}\sum_i\tau_i\xi_i\right)\exp\left[\frac{\beta_s}{2N}\left(\sum_i \xi_i\right)^2-\frac{\beta_s}{2}\right]\\
+    &\times\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}}\exp\left[\frac{\beta_m}{2 N}\displaystyle\sum_\alpha\left(\sum_{i}\sigma_i^\alpha\right)^2 + \beta\displaystyle\sum_\alpha\sum_i \tau_i\sigma_i^\alpha-n\frac{\beta_m}{2}\right]\\
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[-\frac{\tau_i^2}{2\tau^2}+\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)\tau_i\right]\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\prod_\alpha\int dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)
+\end{align}
+\end{itemize}
 
 
 
