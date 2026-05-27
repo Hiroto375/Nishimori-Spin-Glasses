@@ -57,7 +57,7 @@ tau = 1.0      # noise strength
 
 m0 = solve_m0(beta_s)
 
-Tm = np.linspace(0.01, 2.0, 200)
+Tm = np.linspace(0.01, 2.0, 1000)
 Ts = 0.9
 Ms = []
 ms = []
