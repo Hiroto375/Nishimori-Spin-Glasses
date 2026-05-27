@@ -214,7 +214,17 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
 -\beta H := \frac{\beta_m}{2 N}\displaystyle\sum_{i\neq j}\sigma_i \sigma_j + \beta\displaystyle\sum_i \tau_i\sigma_i
 \]
 事後分布の最大化により画像を修復するが、今回はそれがBoltzmann分布であるから類推によりハミルトニアンを定義できる。
+\sk
+\item Gauss積分の公式は？
+\[
+\int dx\,\exp\left(-\alpha x^2+\beta x\right)=\exp\left(\frac{\beta^2}{4\alpha}\right)
+\]
 
+\sk
+\item Hubbard-Stratonovich変換の公式は？
+\[
+\exp\left(\alpha x^2\right) = \int du \exp\left(-\alpha u^2 +2\alpha x u\right)
+\]
 \sk
 \item $[Z^n]$の求め方は？
 \begin{align}
@@ -236,18 +246,9 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
          =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2} +\frac{\tau_0^2}{2\tau^2})\int dm_0 \int \prod_\alpha dm_\alpha \exp N\bigg(-\frac{\beta_s}{2}m_0^2 -\frac{\beta_m}{2}m_\alpha^2 \\ 
      &+\ln \left[\mathop{\mathrm{Tr}}\limits_{\{\xi\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma^\alpha\}} \int Du \exp\left(\beta_s m_0\xi +\beta_m \sum_\alpha m_\alpha\sigma^\alpha+\beta\tau_0 \xi \displaystyle\sum_\alpha\sigma^\alpha +\beta\tau \displaystyle\sum_\alpha\sigma^\alpha \, u \right)\right]\bigg)\\
 \end{align}
+途中で、Hubbard-Stratonovich、 Gauss積分を用いた。
+一般に、$\Tr$と$\int$は可換である。
 
-\sk
-\item Gauss積分の公式は？
-\[
-\int dx\,\exp\left(-\alpha x^2+\beta x\right)=\exp\left(\frac{\beta^2}{4\alpha}\right)
-\]
-
-\sk
-\item Hubbard-Stratonovich変換の公式は？
-\[
-\exp\left(\alpha x^2\right) = \int du \exp\left(-\alpha u^2 +2\alpha x u\right)
-\]
 
 \sk
 
