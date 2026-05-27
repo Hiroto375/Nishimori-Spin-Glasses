@@ -224,12 +224,32 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
     =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\exp\left(-\sum_i\frac{\tau_i^2+\tau_0^2}{2\tau^2}+\frac{\tau_0}{\tau^2}\sum_i\tau_i\xi_i\right)\exp\left[\frac{\beta_s}{2N}\left(\sum_i \xi_i\right)^2-\frac{\beta_s}{2}\right]\\
     &\times\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}}\exp\left[\frac{\beta_m}{2 N}\displaystyle\sum_\alpha\left(\sum_{i}\sigma_i^\alpha\right)^2 + \beta\displaystyle\sum_\alpha\sum_i \tau_i\sigma_i^\alpha-n\frac{\beta_m}{2}\right]\\
     =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \int \prod_i d\tau_i\,\prod_i\exp\left[-\frac{1}{2\tau^2}\tau_i^2+\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)\tau_i\right]\\
-    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \prod_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
     =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[\frac{\tau^2}{2}\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)^2\right]\\
-    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
-    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[\frac{\tau^2}{2}\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)^2\right]\\
-    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \prod_\alpha\exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2} +\frac{\tau_0^2}{2\tau^2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left( \beta\tau_0 \xi_i \displaystyle\sum_\alpha\sigma_i^\alpha\right)\int du \,\exp\left(-\frac{\beta^2 \tau^2}{2}u+\beta^2\tau^2 \displaystyle\sum_\alpha\sigma_i^\alpha \, u\right)\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha\prod_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+     =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2} +\frac{\tau_0^2}{2\tau^2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left( \beta\tau_0 \xi_i \displaystyle\sum_\alpha\sigma_i^\alpha\right)\int Du \exp\left(\beta\tau \displaystyle\sum_\alpha\sigma_i^\alpha \, u\right)\\
+    &\times \int dm_0 \,\prod_i\exp\left(-\frac{\beta_s}{2}m_0^2+\beta_s m_0\xi_i \right)\int \prod_\alpha dm_\alpha \prod_\alpha \prod_i \exp\left(-\frac{\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sigma_i^\alpha\right)\\
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2} +\frac{\tau_0^2}{2\tau^2})\int dm_0 \int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_s}{2}m_0^2 -\frac{N\beta_m}{2}m_\alpha^2 \right)\\
+     \times \,&\bigg[\mathop{\mathrm{Tr}}\limits_{\{\xi\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma^\alpha\}} \int Du \exp\left(\beta_s m_0\xi +\beta_m \sum_\alpha m_\alpha\sigma^\alpha+\beta\tau_0 \xi \displaystyle\sum_\alpha\sigma^\alpha +\beta\tau \displaystyle\sum_\alpha\sigma^\alpha \, u \right)\bigg]^N\\
+         =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2} +\frac{\tau_0^2}{2\tau^2})\int dm_0 \int \prod_\alpha dm_\alpha \exp N\bigg(-\frac{\beta_s}{2}m_0^2 -\frac{\beta_m}{2}m_\alpha^2 \\ 
+     &+\ln \left[\mathop{\mathrm{Tr}}\limits_{\{\xi\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma^\alpha\}} \int Du \exp\left(\beta_s m_0\xi +\beta_m \sum_\alpha m_\alpha\sigma^\alpha+\beta\tau_0 \xi \displaystyle\sum_\alpha\sigma^\alpha +\beta\tau \displaystyle\sum_\alpha\sigma^\alpha \, u \right)\right]\bigg)\\
 \end{align}
+
+\sk
+\item Gauss積分の公式は？
+\[
+\int dx\,\exp\left(-\alpha x^2+\beta x\right)=\exp\left(\frac{\beta^2}{4\alpha}\right)
+\]
+
+\sk
+\item Hubbard-Stratonovich変換の公式は？
+\[
+\exp\left(\alpha x^2\right) = \int du \exp\left(-\alpha u^2 +2\alpha x u\right)
+\]
+
+\sk
 
 \item RS解の自己無撞着方程式は？
 \begin{align}
