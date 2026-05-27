@@ -167,7 +167,7 @@ $\beta_m$は、大きくすると同じ状態を取りやすくなる、画像�
 証明は
 \begin{align}
     M(\beta_m, \beta) 
-&\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P _\mathrm{out}(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle\right|\\
+&\leq \left|\mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P _\mathrm{out}(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\})\,\xi_i \,\mathrm{sgn}\langle \sigma_i\rangle\right|\\
 &\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\left|\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\xi_i\}|\{\tau_i\})P(\{\tau_i\})\,\xi_i\right|\\
 &\leq \mathop{\mathrm{Tr}}\limits_{\{\tau_i\}}\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}} P(\{\xi_i\}|\{\tau_i\})P(\{\tau_i\})\,\xi_i \,\mathrm{sgn}\langle \xi_i\rangle = M(\beta_s, \beta_p) .\\
 \end{align}
@@ -223,10 +223,23 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
     =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\exp\left(-\sum_i\frac{(\tau_i-\tau_0\xi_i)^2}{2\tau^2}\right)\exp\left(\frac{\beta_s}{2N}\sum_{i\neq j}\xi_i\xi_j\right) \mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}}\exp\left(\frac{\beta_m}{2 N}\displaystyle\sum_\alpha\sum_{i\neq j}\sigma_i^\alpha \sigma_j^\alpha + \beta\displaystyle\sum_\alpha\sum_i \tau_i\sigma_i^\alpha\right)\\
     =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\exp\left(-\sum_i\frac{\tau_i^2+\tau_0^2}{2\tau^2}+\frac{\tau_0}{\tau^2}\sum_i\tau_i\xi_i\right)\exp\left[\frac{\beta_s}{2N}\left(\sum_i \xi_i\right)^2-\frac{\beta_s}{2}\right]\\
     &\times\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}}\exp\left[\frac{\beta_m}{2 N}\displaystyle\sum_\alpha\left(\sum_{i}\sigma_i^\alpha\right)^2 + \beta\displaystyle\sum_\alpha\sum_i \tau_i\sigma_i^\alpha-n\frac{\beta_m}{2}\right]\\
-    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[-\frac{\tau_i^2}{2\tau^2}+\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)\tau_i\right]\\
-    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\prod_\alpha\int dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \int \prod_i d\tau_i\,\prod_i\exp\left[-\frac{1}{2\tau^2}\tau_i^2+\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)\tau_i\right]\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[\frac{\tau^2}{2}\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)^2\right]\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+    =&\exp(-\frac{N\tau_0^2}{2\tau^2}-\frac{\beta_s}{2}-\frac{n\beta_m}{2})\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\mathop{\mathrm{Tr}}\limits_{\{\sigma_i^\alpha\}} \prod_i\exp\left[\frac{\tau^2}{2}\left(\frac{\tau_0}{\tau^2}\xi_i+\beta\displaystyle\sum_\alpha\sigma_i^\alpha\right)^2\right]\\
+    &\times \int dm_0 \,\exp\left(-\frac{N\beta_s}{2}m_0^2+\beta_s m_0\sum_i\xi_i \right)\int \prod_\alpha dm_\alpha \exp\left(-\frac{N\beta_m}{2}m_\alpha^2 + \beta_m m_\alpha\sum_i\sigma_i^\alpha\right)\\
+\end{align}
+
+\item RS解の自己無撞着方程式は？
+\begin{align}
+    m_0 &= \tanh \beta_s m_0\\\\
+m&=\frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du\, e^{\beta_s m_0 \xi} \,\tanh \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}\\\\
+M &= \frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du \,e^{\beta_s m_0 \xi} \, \mathrm{sgn} \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}
 \end{align}
 \end{itemize}
+
+\subsection{重なりの温度依存性}
 
 
 
