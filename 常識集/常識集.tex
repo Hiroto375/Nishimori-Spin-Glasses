@@ -225,8 +225,25 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
 \[
 \exp\left(\alpha x^2\right) = \int du \exp\left(-\alpha u^2 +2\alpha x u\right)
 \]
+
+
+
 \sk
-\item $[Z^n]$の求め方は？
+
+\item RS解の自己無撞着方程式は？
+\begin{align}
+    m_0 &= \tanh \beta_s m_0\\\\
+m&=\frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du\, e^{\beta_s m_0 \xi} \,\tanh \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}\\\\
+M &= \frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du \,e^{\beta_s m_0 \xi} \, \mathrm{sgn} \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}
+\end{align}
+\end{itemize}
+
+\subsection{重なりの温度依存性}
+
+\newpage
+\section*{Appendix: 計算集}
+\subsection*{6 画像修復のレプリカ計算}
+まず、$ [Z^n]$を求める。
 \begin{align}
     [Z^n]
     =&\mathop{\mathrm{Tr}}\limits_{\{\xi_i\}}\int \prod_i d\tau_i\,P(\{\tau_i\}|\{\xi_i\})P(\{\xi_i\}) \left(\mathop{\mathrm{Tr}}\limits_{\{\sigma_i\}}\exp(-\beta H)\right)^n \\
@@ -248,21 +265,6 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
 \end{align}
 途中で、Hubbard-Stratonovich、 Gauss積分を用いた。
 一般に、$\Tr$と$\int$は可換である。
-
-
-\sk
-
-\item RS解の自己無撞着方程式は？
-\begin{align}
-    m_0 &= \tanh \beta_s m_0\\\\
-m&=\frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du\, e^{\beta_s m_0 \xi} \,\tanh \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}\\\\
-M &= \frac{\mathop{\mathrm{Tr}}\limits_{\xi} \int Du \,e^{\beta_s m_0 \xi} \, \mathrm{sgn} \left(\beta_m m + \beta\tau_0\xi + \beta\tau u  \right)}{2\cosh\beta_s m_0}
-\end{align}
-\end{itemize}
-
-\subsection{重なりの温度依存性}
-
-
 
 
 \end{document}
