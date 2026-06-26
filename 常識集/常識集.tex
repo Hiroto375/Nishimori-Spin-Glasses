@@ -221,10 +221,22 @@ M(\beta_m, \beta)\leq M\left(\beta_s, \frac{\tau_0}{\tau^2}\right)
 \]
 
 \sk
-\item Hubbard-Stratonovich変換の公式は？
-\[
-\exp\left(\frac{1}{2}\alpha x^2\right) = \int du \exp\left(-\frac{1}{2\alpha }u^2 +x u\right)
-\]
+\item Hubbard-Stratonovich変換の公式(スカラー)は？
+\begin{align}
+    &\exp\left(\frac{1}{2}\alpha x^2\right) = \int du \exp\left(-\frac{1}{2\alpha }u^2 +x u\right)\\
+    &\exp\left(-\frac{1}{2}\alpha x^2\right) = \int du \exp\left(-\frac{1}{2\alpha }u^2 +ix u\right)
+\end{align}
+
+
+
+\sk
+\item Hubbard-Stratonovich変換の公式(行列)は？
+\begin{align}
+    \exp\left(\frac{1}{2}\bm{x}^T A \bm{x}\right)=\frac{1}{\sqrt{2\pi}^{n}\sqrt{\det A}}\int d\bm{u}\exp\left(-\frac{1}{2}\bm{u}^T A^{-1}\bm{u} +\bm{x}^T\bm{u}\right)\\
+    \exp\left(-\frac{1}{2}\bm{x}^T A \bm{x}\right)=\frac{1}{\sqrt{2\pi}^{n}\sqrt{\det A}}\int d\bm{u}\exp\left(-\frac{1}{2}\bm{u}^T A^{-1}\bm{u} +i\bm{x}^T\bm{u}\right)
+\end{align}
+
+
 
 
 
